@@ -21,7 +21,7 @@ pipeline:
                     connectorRef: connect_to_techwhisperin
                     repoName: <+input>
                     build: <+input>
-                timeout: 10m
+                  timeout: 10m
               - step:
                   type: ShellScript
                   name: ShellScript_1
