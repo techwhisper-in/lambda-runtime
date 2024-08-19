@@ -31,9 +31,3 @@ pipeline:
                     outputVariables: []
                   timeout: 10m
         tags: {}
-        variables:
-          - name: repo_names
-            type: String
-            description: ""
-            required: false
-            value: <+input>
