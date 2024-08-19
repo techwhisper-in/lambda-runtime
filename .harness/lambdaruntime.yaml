@@ -1,30 +1,42 @@
 pipeline:
   name: lambda-runtime
   identifier: lambdaruntime
+  projectIdentifier: myfirstproject
+  orgIdentifier: default
+  tags: {}
   stages:
     - stage:
-        name: Clone Stage
-        identifier: clone_stage
+        name: Repo Clone
+        identifier: repo_clone
         description: ""
         type: Custom
         spec:
           execution:
             steps:
               - step:
-                  type: GitClone
-                  name: Clone Private Repo
-                  identifier: clone_private_repo
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
                   spec:
-                    connectorRef: connect_to_techwhisperin
-                    repoName: <+input>
-                    build: <+input>
-              - step:
-                  type: Run
-                  identifier: clone_repo
-                  name: Clone Repo
-                  spec:
-                    shell: Sh
-                    command: |
-                      git clone https://<+secrets.getValue("GITHUB_TOKEN")>@github.com/techwhisper-in/<+execution.steps.clone_private_repo.spec.execution.steps.clone_private_repo.spec.repoName>
-  projectIdentifier: myfirstproject
-  orgIdentifier: default
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: |
+                          repo_name=<+execution.steps.ShellScript_1.spec.environmentVariables.repo_name>
+                          echo $repo_name
+                          echo "https://github.com/techwhisper-in/$repo_name.git"
+                          git clone "https://<+secrets.getValue("connect_to_techwhisper-in")>@github.com/techwhisper-in/$repo_name.git"
+                          cd $repo_name
+                          python3 change-runtime.py "hello"
+                          echo "ankit"
+                          cd ..
+                          rm -rf "$repo_name"
+                    environmentVariables:
+                      - name: repo_name
+                        type: String
+                        value: <+input>
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
