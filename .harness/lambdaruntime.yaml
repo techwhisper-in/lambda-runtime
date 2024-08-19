@@ -32,7 +32,7 @@ pipeline:
                   timeout: 10m
         tags: {}
         variables:
-          - name: repo_name
+          - name: repo_names
             type: String
             description: ""
             required: false
