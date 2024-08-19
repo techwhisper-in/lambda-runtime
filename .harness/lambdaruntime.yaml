@@ -1,13 +1,10 @@
 pipeline:
   name: lambda-runtime
   identifier: lambdaruntime
-  projectIdentifier: myfirstproject
-  orgIdentifier: default
-  tags: {}
   stages:
     - stage:
-        name: Repo Clone
-        identifier: repo_clone
+        name: Clone Stage
+        identifier: clone_stage
         description: ""
         type: Custom
         spec:
@@ -21,5 +18,13 @@ pipeline:
                     connectorRef: connect_to_techwhisperin
                     repoName: <+input>
                     build: <+input>
-                  timeout: 10m
-        tags: {}
+              - step:
+                  type: Run
+                  identifier: clone_repo
+                  name: Clone Repo
+                  spec:
+                    shell: Sh
+                    command: |
+                      git clone https://<+secrets.getValue("GITHUB_TOKEN")>@github.com/techwhisper-in/<+execution.steps.clone_private_repo.spec.execution.steps.clone_private_repo.spec.repoName>
+  projectIdentifier: myfirstproject
+  orgIdentifier: default
