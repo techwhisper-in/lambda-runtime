@@ -24,7 +24,7 @@ pipeline:
                       type: Inline
                       spec:
                         script: |
-                          repo_name=stage.variables.repo_name>
+                          repo_name=<stage.variables.repo_name>
                           git clone "https://github.com/techwhisper-in/$repo_name.git"
                           cd $repo_name
                           python change-runtime.py "hello"
