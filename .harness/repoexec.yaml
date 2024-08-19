@@ -1,0 +1,36 @@
+inputSet:
+  pipeline:
+    identifier: lambdaruntime
+    stages:
+      - stage:
+          identifier: plan
+          type: Custom
+          spec:
+            execution:
+              steps:
+                - step:
+                    identifier: ShellScript_1
+                    type: ShellScript
+                    spec:
+                      source:
+                        type: Inline
+                        spec:
+                          script: |-
+                            git clone "https://github.com/techwhisper-in/$repo_name.git"
+                            cd $repo_name
+                            python3 change-runtime.py "hello"
+                            echo "ankit"
+                            cd ..
+                            rm -rf "$repo_name"
+                      environmentVariables:
+                        - name: repo_name
+                          type: String
+                          value: repo
+          variables:
+            - name: repo_name
+              type: String
+              value: ""
+  name: repo-exec
+  identifier: repoexec
+  orgIdentifier: default
+  projectIdentifier: myfirstproject
