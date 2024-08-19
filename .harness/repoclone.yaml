@@ -28,6 +28,6 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |
-                      git clone https://<+secrets.getValue("GITHUB_TOKEN")>@github.com/ACCOUNT_NAME/REPO_NAME.git
+                      git clone https://<+secrets.getValue("GITHUB_TOKEN")>@github.com/<+pipeline.stages.clone_stage.spec.execution.steps.clone_private_repo.spec.repoName>.git
   projectIdentifier: myfirstproject
   orgIdentifier: default
