@@ -6,8 +6,8 @@ pipeline:
   tags: {}
   stages:
     - stage:
-        name: Plan
-        identifier: plan
+        name: Repo Clone
+        identifier: repo_clone
         description: ""
         type: Custom
         spec:
@@ -29,7 +29,7 @@ pipeline:
                           repo_name=<+execution.steps.ShellScript_1.spec.environmentVariables.repo_name>
                           echo $repo_name
                           echo "https://github.com/techwhisper-in/$repo_name.git"
-                          git clone "https://github.com/techwhisper-in/$repo_name.git"
+                          git clone "https://<+secrets.getValue(connect_to_techwhisper-in)>@github.com/techwhisper-in/$repo_name.git"
                           cd $repo_name
                           python3 change-runtime.py "hello"
                           echo "ankit"
