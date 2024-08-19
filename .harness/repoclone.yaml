@@ -1,0 +1,33 @@
+pipeline:
+  name: Clone Private GitHub Repo
+  identifier: clone_private_github_repo
+  stages:
+    - stage:
+        name: Clone Stage
+        identifier: clone_stage
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: GitClone
+                  name: Clone Private Repo
+                  identifier: clone_private_repo
+                  spec:
+                    connectorRef: connect_to_techwhisperin
+                    repoName: <+input>
+                    build:
+                      type: branch
+                      spec:
+                        branch: main
+              - step:
+                  type: Run
+                  identifier: clone_repo
+                  name: Clone Repo
+                  spec:
+                    shell: Sh
+                    command: |
+                      git clone https://<+secrets.getValue("GITHUB_TOKEN")>@github.com/ACCOUNT_NAME/REPO_NAME.git
+  projectIdentifier: myfirstproject
+  orgIdentifier: default
