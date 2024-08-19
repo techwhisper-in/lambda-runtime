@@ -23,7 +23,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: <+input>
+                        script: echo <+execution.steps.ShellScript_1.spec.environmentVariables.repo_name>
                     environmentVariables:
                       - name: repo_name
                         type: String
