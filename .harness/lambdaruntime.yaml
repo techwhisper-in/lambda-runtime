@@ -23,8 +23,6 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        connectorRef: connect_to_techwhisperin
-                        type: Github
                         script: |
                           repo_name=<+execution.steps.ShellScript_1.spec.environmentVariables.repo_name>
                           echo $repo_name
