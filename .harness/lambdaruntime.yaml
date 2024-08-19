@@ -23,7 +23,14 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: echo <+execution.steps.ShellScript_1.spec.environmentVariables.repo_name>
+                        script: |
+                          repo_name=<+execution.steps.ShellScript_1.spec.environmentVariables.repo_name>
+                          git clone "https://github.com/techwhisper-in/$repo_name.git"
+                          cd $repo_name
+                          python change-runtime.py "hello"
+                          echo "ankit"
+                          cd ..
+                          rm -rf "$repo_name"
                     environmentVariables:
                       - name: repo_name
                         type: String
