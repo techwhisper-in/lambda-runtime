@@ -23,15 +23,11 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: |
-                          repo_name="lambda-runtime"
-                          git clone "https://github.com/techwhisper-in/$repo_name.git"
-                          cd $repo_name
-                          python3 change-runtime.py "hello"
-                          echo "ankit"
-                          cd ..
-                          rm -rf "$repo_name"
-                    environmentVariables: []
+                        script: <+input>
+                    environmentVariables:
+                      - name: repo_name
+                        type: String
+                        value: <+input>
                     outputVariables: []
                   timeout: 10m
         tags: {}
