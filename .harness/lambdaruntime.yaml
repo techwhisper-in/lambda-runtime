@@ -28,6 +28,7 @@ pipeline:
                         script: |
                           repo_name=<+execution.steps.ShellScript_1.spec.environmentVariables.repo_name>
                           echo $repo_name
+                          echo "https://github.com/techwhisper-in/$repo_name.git"
                           git clone "https://github.com/techwhisper-in/$repo_name.git"
                           cd $repo_name
                           python3 change-runtime.py "hello"
