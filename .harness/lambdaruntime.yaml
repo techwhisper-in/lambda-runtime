@@ -22,18 +22,4 @@ pipeline:
                     repoName: <+input>
                     build: <+input>
                   timeout: 10m
-              - step:
-                  type: ShellScript
-                  name: ShellScript_1
-                  identifier: ShellScript_1
-                  spec:
-                    shell: Bash
-                    executionTarget: {}
-                    source:
-                      type: Inline
-                      spec:
-                        script: repo_name= <+execution.steps.clone_private_repo.spec.repoName> echo $repo_name cd $repo_name python3 change-runtime.py "hello" cd .. rm -rf "$repo_name"
-                    environmentVariables: []
-                    outputVariables: []
-                  timeout: 10m
         tags: {}
