@@ -12,11 +12,11 @@ pipeline:
             steps:
               - step:
                   type: GitClone
-                  name: Clone Private Repo
-                  identifier: clone_private_repo
+                  name: GitClone_1
+                  identifier: GitClone_1
                   spec:
                     connectorRef: connect_to_techwhisperin
-                    repoName: <+input>
+                    repoName: myrepo
                     build:
                       type: branch
                       spec:
