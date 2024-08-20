@@ -16,11 +16,8 @@ pipeline:
                   identifier: GitClone_1
                   spec:
                     connectorRef: connect_to_techwhisperin
-                    repoName: myrepo
-                    build:
-                      type: branch
-                      spec:
-                        branch: main
+                    repoName: <+input>
+                    build: <+input>
               - step:
                   type: Run
                   identifier: clone_repo
@@ -28,6 +25,6 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |
-                      git clone https://<+secrets.getValue("GITHUB_TOKEN")>@github.com/<+pipeline.stages.clone_stage.spec.execution.steps.clone_private_repo.spec.repoName>.git
+                      git clone https://<+secrets.getValue("GITHUB_TOKEN")>@github.com/techwhisper-in/<+pipeline.stages.clone_stage.spec.execution.steps.GitClone_1.spec.repoName>.git
   projectIdentifier: myfirstproject
   orgIdentifier: default
