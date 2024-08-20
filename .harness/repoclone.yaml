@@ -1,6 +1,9 @@
 pipeline:
   name: Clone Private GitHub Repo
   identifier: clone_private_github_repo
+  projectIdentifier: myfirstproject
+  orgIdentifier: default
+  tags: {}
   stages:
     - stage:
         name: Clone Stage
@@ -29,5 +32,3 @@ pipeline:
                     shell: Sh
                     command: |
                       git clone https://<+secrets.getValue("GITHUB_TOKEN")>@github.com/techwhisper-in/<+pipeline.stages.clone_stage.spec.execution.steps.GitClone_1.spec.repoName>.git
-  projectIdentifier: myfirstproject
-  orgIdentifier: default
