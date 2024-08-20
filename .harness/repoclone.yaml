@@ -17,7 +17,10 @@ pipeline:
                   spec:
                     connectorRef: connect_to_techwhisperin
                     repoName: lambda-runtime
-                    build: <+input>
+                    build:
+                      type: branch
+                      spec:
+                        branch: main
               - step:
                   type: Run
                   identifier: clone_repo
