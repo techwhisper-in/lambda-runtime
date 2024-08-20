@@ -6,11 +6,18 @@ pipeline:
   tags: {}
   stages:
     - stage:
-        name: Clone Stage
-        identifier: clone_stage
+        name: clone_repo
+        identifier: clone_repo
         description: ""
-        type: Custom
+        type: CI
         spec:
+          cloneCodebase: false
+          platform:
+            os: Windows
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
           execution:
             steps:
               - step:
@@ -24,11 +31,6 @@ pipeline:
                       type: branch
                       spec:
                         branch: main
-              - step:
-                  type: Run
-                  identifier: clone_repo
-                  name: Clone Repo
-                  spec:
-                    shell: Sh
-                    command: |
-                      git clone https://<+secrets.getValue("GITHUB_TOKEN")>@github.com/techwhisper-in/<+pipeline.stages.clone_stage.spec.execution.steps.GitClone_1.spec.repoName>.git
+          caching:
+            enabled: false
+            paths: []
