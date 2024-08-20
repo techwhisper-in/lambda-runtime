@@ -1,5 +1,5 @@
 pipeline:
-  name: Clone Private GitHub Repo
+  name: Clone-Private-GitHub-Repo
   identifier: clone_private_github_repo
   projectIdentifier: myfirstproject
   orgIdentifier: default
