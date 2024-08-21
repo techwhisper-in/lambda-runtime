@@ -1,4 +1,9 @@
 inputSet:
+  name: input-lambda-runtime
+  tags: {}
+  identifier: inputlambdaruntime
+  orgIdentifier: default
+  projectIdentifier: myfirstproject
   pipeline:
     identifier: lambdaruntime
     stages:
@@ -22,7 +27,3 @@ inputSet:
                         - name: repo_name
                           type: String
                           value: lambda-runtime
-  name: input-lambda-runtime
-  identifier: inputlambdaruntime
-  orgIdentifier: default
-  projectIdentifier: myfirstproject
