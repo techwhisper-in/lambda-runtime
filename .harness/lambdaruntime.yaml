@@ -30,7 +30,7 @@ pipeline:
                           echo $repo_name
                           echo "https://github.com/$account_name/$repo_name.git"
                           echo <+pipeline.stages.repo_clone.spec.execution.steps.ShellScript_1.spec.environmentVariables.Region>
-                          echo <+pipeline.stages.repo_clone.spec.execution.steps.ShellScript_1.spec.environmentVariables.Lambda-Functions>
+                          echo <+execution.steps.ShellScript_1.spec.environmentVariables.Lambda-Functions>
                           git clone "https://<+execution.steps.ShellScript_1.spec.environmentVariables.github_connect_secret>@github.com/$account_name/$repo_name.git"
                           cd $repo_name
                           python3 change-runtime.py "hello"
