@@ -1,0 +1,28 @@
+inputSet:
+  pipeline:
+    identifier: lambdaruntime
+    stages:
+      - stage:
+          identifier: repo_clone
+          type: Custom
+          spec:
+            execution:
+              steps:
+                - step:
+                    identifier: ShellScript_1
+                    type: ShellScript
+                    spec:
+                      environmentVariables:
+                        - name: github_connector
+                          type: String
+                          value: connect_to_techwhisperin
+                        - name: account_name
+                          type: String
+                          value: techwhisper-in
+                        - name: repo_name
+                          type: String
+                          value: lambda-runtime
+  name: input-lambda-runtime
+  identifier: inputlambdaruntime
+  orgIdentifier: default
+  projectIdentifier: myfirstproject
