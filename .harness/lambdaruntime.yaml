@@ -41,19 +41,25 @@ pipeline:
                     environmentVariables:
                       - name: github_connect_secret
                         type: Secret
+                        required: true
                         value: <+input>
                       - name: account_name
                         type: String
+                        required: true
                         value: <+input>
                       - name: repo_name
                         type: String
+                        required: true
                         value: <+input>
                       - name: Region
                         type: String
+                        required: true
                         value: <+input>.default(us-east-1).allowedValues(us-east-1,us-east-2)
                       - name: Lambda-Functions
                         type: String
-                        value: <+input>.default(perform-action-on-All-Lambdas)
+                        required: true
+                        Description: Write "All" if action to be performed on all the lambda-functions
+                        value: <+input>
                     outputVariables: []
                   timeout: 10m
         tags: {}
