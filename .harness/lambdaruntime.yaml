@@ -30,7 +30,7 @@ pipeline:
           - name: Lambda_Functions
             type: String
             required: true
-            Description: Write "All" if action to be performed on all the lambda-functions
+            description: Write "All" if action to be performed on all the lambda-functions
             value: <+input>.default(All)
         spec:
           execution:
