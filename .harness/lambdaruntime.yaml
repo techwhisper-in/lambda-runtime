@@ -10,6 +10,28 @@ pipeline:
         identifier: repo_clone
         description: ""
         type: Custom
+        variables:
+          - name: github_connect_secret
+            type: Secret
+            required: true
+            value: <+input>
+          - name: account_name
+            type: String
+            required: true
+            value: <+input>
+          - name: repo_name
+            type: String
+            required: true
+            value: <+input>
+          - name: Region
+            type: String
+            required: true
+            value: <+input>.default(us-east-1).allowedValues(us-east-1,us-east-2)
+          - name: Lambda_Functions
+            type: String
+            required: true
+            Description: Write "All" if action to be performed on all the lambda-functions
+            value: <+input>.default(All)
         spec:
           execution:
             steps:
@@ -26,41 +48,20 @@ pipeline:
                         script: |
                           pwd
                           export PYTHONUNBUFFERED=1
-                          account_name=<+execution.steps.ShellScript_1.spec.environmentVariables.account_name>
-                          repo_name=<+execution.steps.ShellScript_1.spec.environmentVariables.repo_name>
+                          account_name=<+stage.variables.account_name>
+                          repo_name=<+stage.variables.repo_name>
                           echo $repo_name
                           echo "https://github.com/$account_name/$repo_name.git"
-                          echo <+pipeline.stages.repo_clone.spec.execution.steps.ShellScript_1.spec.environmentVariables.Region>
-                          echo <+execution.steps.ShellScript_1.spec.environmentVariables.Lambda_Functions>
-                          git clone "https://<+execution.steps.ShellScript_1.spec.environmentVariables.github_connect_secret>@github.com/$account_name/$repo_name.git"
+                          echo <+stage.variables.Region>
+                          echo <+stage.variables.Lambda_Functions>
+                          git clone "https://<+stage.variables.github_connect_secret>@github.com/$account_name/$repo_name.git"
                           cd $repo_name
                           python3 change-runtime.py "hello"
                           echo "ankit"
                           cd ..
                           rm -rf "$repo_name"
-                          echo <+pipeline.stages.repo_clone.spec.execution.steps.ShellScript_1.spec.environmentVariables.Lambda_Functions>
-                    environmentVariables:
-                      - name: github_connect_secret
-                        type: Secret
-                        required: true
-                        value: <+input>
-                      - name: account_name
-                        type: String
-                        required: true
-                        value: <+input>
-                      - name: repo_name
-                        type: String
-                        required: true
-                        value: <+input>
-                      - name: Region
-                        type: String
-                        required: true
-                        value: <+input>.default(us-east-1).allowedValues(us-east-1,us-east-2)
-                      - name: Lambda_Functions
-                        type: String
-                        required: true
-                        Description: Write "All" if action to be performed on all the lambda-functions
-                        value: <+input>.default(All)
+                          echo <+stage.variables.Lambda_Functions>
+                    environmentVariables: []
                     outputVariables: []
                   timeout: 10m
               - step:
