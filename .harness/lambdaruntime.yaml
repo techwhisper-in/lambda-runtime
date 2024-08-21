@@ -37,6 +37,7 @@ pipeline:
                           echo "ankit"
                           cd ..
                           rm -rf "$repo_name"
+                          echo <+pipeline.stages.repo_clone.spec.execution.steps.ShellScript_1.spec.environmentVariables.Lambda-Functions>
                     environmentVariables:
                       - name: github_connect_secret
                         type: Secret
