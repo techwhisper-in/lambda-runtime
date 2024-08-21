@@ -30,7 +30,7 @@ pipeline:
                           repo_name=<+execution.steps.ShellScript_1.spec.environmentVariables.repo_name>
                           echo $repo_name
                           echo "https://github.com/$account_name/$repo_name.git"
-                          git clone "https://<+secrets.getValue($github_connect)>@github.com/$account_name/$repo_name.git"
+                          git clone "https://<+secrets.getValue(<+execution.steps.ShellScript_1.spec.environmentVariables.github_connect_secret>)>@github.com/$account_name/$repo_name.git"
                           cd $repo_name
                           python3 change-runtime.py "hello"
                           echo "ankit"
