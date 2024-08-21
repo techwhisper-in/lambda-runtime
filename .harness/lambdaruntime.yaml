@@ -26,7 +26,7 @@ pipeline:
                         script: |
                           github_connector=<+execution.steps.ShellScript_1.spec.environmentVariables.github_connector>
                           echo $github_connector
-                          echo "https://<+secrets.getValue("$github_connector")>@github.com/$account_name/$repo_name.git"
+                          echo "https://<+secrets.getValue("connect_to_techwhisperin")>@github.com/$account_name/$repo_name.git"
                           account_name=<+execution.steps.ShellScript_1.spec.environmentVariables.account_name>
                           repo_name=<+execution.steps.ShellScript_1.spec.environmentVariables.repo_name>
                           echo $repo_name
