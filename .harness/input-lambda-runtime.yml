@@ -18,9 +18,18 @@ inputSet:
                     type: ShellScript
                     spec:
                       environmentVariables:
+                        - name: github_connect_secret
+                          type: Secret
+                          value: connect_to_techwhisper-in
                         - name: account_name
                           type: String
                           value: techwhisper-in
                         - name: repo_name
                           type: String
                           value: lambda-runtime
+                        - name: Region
+                          type: String
+                          value: us-east-1
+                        - name: Lambda-Functions
+                          type: String
+                          value: All
