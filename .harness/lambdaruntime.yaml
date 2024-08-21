@@ -52,7 +52,7 @@ pipeline:
                         value: <+input>.default(us-east-1).allowedValues(us-east-1,us-east-2)
                       - name: Lambda-Functions
                         type: String
-                        value: <+input>.default().allowedValues(All,)
+                        value: <+input>.default(All)
                     outputVariables: []
                   timeout: 10m
         tags: {}
