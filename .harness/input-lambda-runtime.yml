@@ -10,26 +10,19 @@ inputSet:
       - stage:
           identifier: repo_clone
           type: Custom
-          spec:
-            execution:
-              steps:
-                - step:
-                    identifier: ShellScript_1
-                    type: ShellScript
-                    spec:
-                      environmentVariables:
-                        - name: github_connect_secret
-                          type: Secret
-                          value: connect_to_techwhisper-in
-                        - name: account_name
-                          type: String
-                          value: techwhisper-in
-                        - name: repo_name
-                          type: String
-                          value: lambda-runtime
-                        - name: Region
-                          type: String
-                          value: us-east-2
-                        - name: Lambda-Functions
-                          type: String
-                          value: perform-action-on-All-Lambdas
+          variables:
+            - name: github_connect_secret
+              type: Secret
+              value: connect_to_techwhisper-in
+            - name: account_name
+              type: String
+              value: techwhisper-in
+            - name: repo_name
+              type: String
+              value: lambda-runtime
+            - name: Region
+              type: String
+              value: us-east-2
+            - name: Lambda_Functions
+              type: String
+              value: All
