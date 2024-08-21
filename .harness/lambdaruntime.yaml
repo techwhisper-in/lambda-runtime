@@ -25,6 +25,7 @@ pipeline:
                       spec:
                         script: |
                           pwd
+                          export PYTHONUNBUFFERED=1
                           account_name=<+execution.steps.ShellScript_1.spec.environmentVariables.account_name>
                           repo_name=<+execution.steps.ShellScript_1.spec.environmentVariables.repo_name>
                           echo $repo_name
