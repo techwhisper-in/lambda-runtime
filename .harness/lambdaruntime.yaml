@@ -24,9 +24,6 @@ pipeline:
                       type: Inline
                       spec:
                         script: |
-                          github_connector=<+execution.steps.ShellScript_1.spec.environmentVariables.github_connector>
-                          echo $github_connector
-                          echo "https://<+secrets.getValue("connect_to_techwhisperin")>@github.com/$account_name/$repo_name.git"
                           account_name=<+execution.steps.ShellScript_1.spec.environmentVariables.account_name>
                           repo_name=<+execution.steps.ShellScript_1.spec.environmentVariables.repo_name>
                           echo $repo_name
@@ -38,9 +35,6 @@ pipeline:
                           cd ..
                           rm -rf "$repo_name"
                     environmentVariables:
-                      - name: github_connector
-                        type: String
-                        value: <+input>
                       - name: account_name
                         type: String
                         value: <+input>
