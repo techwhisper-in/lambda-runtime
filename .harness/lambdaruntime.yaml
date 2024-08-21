@@ -24,7 +24,7 @@ pipeline:
                       type: Inline
                       spec:
                         script: |
-                          ls
+                          pwd
                           account_name=<+execution.steps.ShellScript_1.spec.environmentVariables.account_name>
                           repo_name=<+execution.steps.ShellScript_1.spec.environmentVariables.repo_name>
                           echo $repo_name
