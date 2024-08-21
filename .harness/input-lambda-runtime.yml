@@ -29,7 +29,7 @@ inputSet:
                           value: lambda-runtime
                         - name: Region
                           type: String
-                          value: us-east-1
+                          value: us-east-2
                         - name: Lambda-Functions
                           type: String
-                          value: All
+                          value: perform-action-on-All-Lambdas
