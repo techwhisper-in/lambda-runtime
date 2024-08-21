@@ -63,4 +63,18 @@ pipeline:
                         value: <+input>.default(All)
                     outputVariables: []
                   timeout: 10m
+              - step:
+                  type: ShellScript
+                  name: ShellScript_2
+                  identifier: ShellScript_2
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: pwd
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
         tags: {}
