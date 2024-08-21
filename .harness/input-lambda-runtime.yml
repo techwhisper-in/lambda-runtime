@@ -18,9 +18,6 @@ inputSet:
                     type: ShellScript
                     spec:
                       environmentVariables:
-                        - name: github_connector
-                          type: String
-                          value: connect_to_techwhisperin
                         - name: account_name
                           type: String
                           value: techwhisper-in
