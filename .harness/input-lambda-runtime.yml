@@ -20,6 +20,9 @@ inputSet:
             - name: repo_name
               type: String
               value: lambda-runtime
+            - name: branch_name
+              type: String
+              value: develop
             - name: Region
               type: String
               value: us-east-2
