@@ -54,7 +54,7 @@ pipeline:
                           repo_name=<+stage.variables.repo_name>
                           echo "**************Flushing $repo_name if exist******************"
                           rm -rf "$repo_name"
-                          sleep 5[s]
+                          sleep 5s
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
