@@ -72,6 +72,7 @@ pipeline:
                           pwd
                           export PYTHONUNBUFFERED=1
                           account_name=<+stage.variables.account_name>
+                          repo_name=<+stage.variables.repo_name>
                           branch_name=<+pipeline.stages.repo_clone.variables.branch_name>
                           echo "The below repository is being cloned:"
                           echo "Account Name: $account_name"
