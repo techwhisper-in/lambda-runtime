@@ -41,8 +41,27 @@ pipeline:
             steps:
               - step:
                   type: ShellScript
-                  name: ShellScript_1
-                  identifier: ShellScript_1
+                  name: flush_cloned_repo
+                  identifier: flush_cloned_repo
+                  spec:
+                    shell: Bash
+                    executionTarget: {}
+                    source:
+                      type: Inline
+                      spec:
+                        script: |
+                          pwd
+                          repo_name=<+stage.variables.repo_name>
+                          echo "**************Flushing $repo_name if exist******************"
+                          rm -rf "$repo_name"
+                          sleep 5[s]
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+              - step:
+                  type: ShellScript
+                  name: clone_repo
+                  identifier: clone_repo
                   spec:
                     shell: Bash
                     executionTarget: {}
@@ -53,19 +72,18 @@ pipeline:
                           pwd
                           export PYTHONUNBUFFERED=1
                           account_name=<+stage.variables.account_name>
-                          repo_name=<+stage.variables.repo_name>
                           branch_name=<+pipeline.stages.repo_clone.variables.branch_name>
-                          echo $repo_name
-                          echo "--single-branch --branch $branch_name "https://<+stage.variables.github_connect_secret>@github.com/$account_name/$repo_name.git""
-                          echo <+stage.variables.Region>
-                          echo <+stage.variables.Lambda_Functions>
-                          rm -rf "$repo_name"
-                          git clone --single-branch --branch $branch_name "https://<+stage.variables.github_connect_secret>@github.com/$account_name/$repo_name.git"
+                          echo "The below repository is being cloned:"
+                          echo "Account Name: $account_name"
+                          echo "Repository Name: $repo_name"
+                          echo "Branch Name: $branch_name"
+                          echo "Cloning....."
+                          git clone --single-branch --branch $branch_name "https://<+stage.variables.github_connect_secret>@github.com/$account_name/$repo_name.git"                          
+                          echo "AWS Region Input: <+stage.variables.Region>"
+                          echo "Lambda Functions <+stage.variables.Lambda_Functions>"
                           cd $repo_name
+                          echo "Changing runtime of Lambda Functions: "
                           python3 change-runtime.py "hello"
-                          echo "ankit"
-
-                          echo <+stage.variables.Lambda_Functions>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
