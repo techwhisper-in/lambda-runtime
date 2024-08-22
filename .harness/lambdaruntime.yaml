@@ -23,6 +23,10 @@ pipeline:
             type: String
             required: true
             value: <+input>
+          - name: branch_name
+            type: String
+            required: true
+            value: <+input>
           - name: Region
             type: String
             required: true
@@ -50,16 +54,17 @@ pipeline:
                           export PYTHONUNBUFFERED=1
                           account_name=<+stage.variables.account_name>
                           repo_name=<+stage.variables.repo_name>
+                          branch_name=<+pipeline.stages.repo_clone.variables.branch_name>
                           echo $repo_name
-                          echo "https://github.com/$account_name/$repo_name.git"
+                          echo "--single-branch --branch $branch_name "https://<+stage.variables.github_connect_secret>@github.com/$account_name/$repo_name.git""
                           echo <+stage.variables.Region>
                           echo <+stage.variables.Lambda_Functions>
-                          git clone "https://<+stage.variables.github_connect_secret>@github.com/$account_name/$repo_name.git"
+                          rm -rf "$repo_name"
+                          git clone --single-branch --branch $branch_name "https://<+stage.variables.github_connect_secret>@github.com/$account_name/$repo_name.git"
                           cd $repo_name
                           python3 change-runtime.py "hello"
                           echo "ankit"
-                          cd ..
-                          rm -rf "$repo_name"
+
                           echo <+stage.variables.Lambda_Functions>
                     environmentVariables: []
                     outputVariables: []
