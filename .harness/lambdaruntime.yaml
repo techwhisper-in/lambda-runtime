@@ -27,6 +27,11 @@ pipeline:
             type: String
             required: true
             value: <+input>
+          - name: Role
+            type: String
+            required: true
+            description: Assume role to access the resources
+            value: <+input>
           - name: Region
             type: String
             required: true
