@@ -22,10 +22,13 @@ inputSet:
               value: lambda-runtime
             - name: branch_name
               type: String
-              value: develop
+              value: main
+            - name: Role
+              type: String
+              value: arn:aws:iam::590183834329:role/Collect_Lambda_details
             - name: Region
               type: String
-              value: us-east-2
+              value: ap-south-1
             - name: Lambda_Functions
               type: String
               value: All
