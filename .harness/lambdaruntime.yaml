@@ -52,7 +52,7 @@ pipeline:
                         script: |
                           pwd
                           repo_name=<+stage.variables.repo_name>
-                          echo "**************Flushing $repo_name if exist******************"
+                          echo "************** Flushing repository $repo_name if exist ******************"
                           rm -rf "$repo_name"
                           sleep 5s
                     environmentVariables: []
