@@ -35,7 +35,7 @@ pipeline:
           - name: Region
             type: String
             required: true
-            value: <+input>.default(us-east-1).allowedValues(us-east-1,us-east-2)
+            value: <+input>.default(us-east-1).allowedValues(us-east-1,us-east-2,ap-south-1)
           - name: Lambda_Functions
             type: String
             required: true
@@ -79,6 +79,7 @@ pipeline:
                           account_name=<+stage.variables.account_name>
                           repo_name=<+stage.variables.repo_name>
                           branch_name=<+pipeline.stages.repo_clone.variables.branch_name>
+                          role_name=<+pipeline.stages.repo_clone.variables.Role>
                           aws_region=<+stage.variables.Region>
                           lambda_functions=<+stage.variables.Lambda_Functions>
                           echo "The below repository is being cloned:"
@@ -87,11 +88,12 @@ pipeline:
                           echo "Branch Name: $branch_name"
                           echo "Cloning....."
                           git clone --single-branch --branch $branch_name "https://<+stage.variables.github_connect_secret>@github.com/$account_name/$repo_name.git"                          
+                          echo "Assume Role ARN: $role_name"
                           echo "AWS Region Input: $aws_region"
                           echo "Lambda Functions: $lamda_functions"
                           cd $repo_name
                           echo "Changing runtime of Lambda Functions........."
-                          python3 change-runtime.py "$lambda_functions"
+                          python3 change-runtime.py "$role_name" "$aws_region" "$lambda_functions"
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
