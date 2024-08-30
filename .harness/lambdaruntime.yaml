@@ -68,6 +68,12 @@ pipeline:
                   name: clone_repo
                   identifier: clone_repo
                   spec:
+                    providerCredential:
+                      type: Aws
+                      spec:
+                        connectorRef: connectawsaccount
+                        region: ap-south-1
+                        roleArn: ""
                     shell: Bash
                     executionTarget: {}
                     source:
