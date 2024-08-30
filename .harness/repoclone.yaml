@@ -30,3 +30,5 @@ pipeline:
           caching:
             enabled: false
             paths: []
+        delegateSelectors:
+          - docker-delegate
