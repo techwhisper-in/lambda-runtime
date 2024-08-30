@@ -21,16 +21,12 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: GitClone
-                  name: GitClone_1
-                  identifier: GitClone_1
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
                   spec:
-                    connectorRef: connect_to_techwhisperin
-                    repoName: lambda-runtime
-                    build:
-                      type: branch
-                      spec:
-                        branch: main
+                    shell: Sh
+                    command: ls -lrt
           caching:
             enabled: false
             paths: []
