@@ -39,12 +39,6 @@ pipeline:
           runtime:
             type: Docker
             spec: {}
-          service:
-            name: aws-cli
-            type: AWS
-            spec:
-              connectorRef: connectawsaccount
-              region: ap-south-1
           execution:
             steps:
               - step:
@@ -53,6 +47,8 @@ pipeline:
                   identifier: Run_1
                   shell: Bash
                   spec:
+                    connectorRef: connectawsaccount
+                    shell: Sh
                     command: |-
                       pwd
                       ls -la
