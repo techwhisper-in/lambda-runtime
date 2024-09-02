@@ -4,6 +4,12 @@ pipeline:
   projectIdentifier: myfirstproject
   orgIdentifier: default
   tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: connect_to_techwhisperin
+        repoName: s3-configuration
+        build: <+input>
   stages:
     - stage:
         name: clone_repo
@@ -11,7 +17,7 @@ pipeline:
         description: ""
         type: CI
         spec:
-          cloneCodebase: false
+          cloneCodebase: true
           platform:
             os: Linux
             arch: Amd64
@@ -37,6 +43,7 @@ pipeline:
                   spec:
                     shell: Bash
                     command: |-
+                      sleep 10
                       pwd
                       ls -la
           caching:
