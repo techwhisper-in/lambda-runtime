@@ -51,6 +51,7 @@ pipeline:
                     shell: Bash
                     command: |-
                       pwd
+                      ls -la
                       export PYTHONUNBUFFERED=1
                       role_name=<+pipeline.stages.clone_repo.variables.Role>
                       aws_region=<+stage.variables.Region>
