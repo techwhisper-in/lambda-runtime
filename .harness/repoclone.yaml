@@ -27,6 +27,15 @@ pipeline:
                   spec:
                     shell: Bash
                     command: pwd
+              - step:
+                  type: Run
+                  name: Run_2
+                  identifier: Run_2
+                  spec:
+                    shell: Bash
+                    command: |-
+                      pwd
+                      ls
           caching:
             enabled: false
             paths: []
