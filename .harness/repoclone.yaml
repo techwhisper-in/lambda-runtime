@@ -50,7 +50,7 @@ pipeline:
                       name: AWS-CLI
                       type: AWS
                       spec:
-                        connectorRef: connect_to_techwhisperin
+                        connectorRef: connectawsaccount
                         region: ""
                   execution:
                     shell: Bash
