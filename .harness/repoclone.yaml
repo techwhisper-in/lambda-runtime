@@ -40,20 +40,20 @@ pipeline:
             type: Docker
             spec: {}
           execution:
+            spec:
+              service:
+                name: AWS-CLI
+                type: AWS
+                spec:
+                  connectorRef: connectawsaccount
+                  region: ""
             steps:
               - step:
                   type: Run
                   name: Run_1
                   identifier: Run_1
+                  shell: Bash
                   spec:
-                    service:
-                      name: AWS-CLI
-                      type: AWS
-                      spec:
-                        connectorRef: connectawsaccount
-                        region: ""
-                  execution:
-                    shell: Bash
                     command: |-
                       pwd
                       ls -la
