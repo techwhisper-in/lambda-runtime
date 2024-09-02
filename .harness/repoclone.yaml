@@ -31,4 +31,5 @@ pipeline:
             enabled: false
             paths: []
         delegateSelectors:
+          - linux-amd64
           - docker-delegate
