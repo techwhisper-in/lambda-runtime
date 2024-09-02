@@ -44,7 +44,7 @@ pipeline:
             type: AWS
             spec:
               connectorRef: connectawsaccount
-              region: ""
+              region: ap-south-1
           execution:
             steps:
               - step:
