@@ -46,8 +46,13 @@ pipeline:
                   name: Run_1
                   identifier: Run_1
                   spec:
-                    connectorRef: connectawsaccount
-                    region: us-east-1
+                    providerCredential:
+                      type: Aws
+                      spec:
+                        connectorRef: connectawsaccount
+                        region: ap-south-1
+                        roleArn: ""
+                      secretManagerRef: harnessSecretManager
                     shell: Bash
                     command: |-
                       pwd
