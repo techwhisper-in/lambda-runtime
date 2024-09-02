@@ -62,10 +62,12 @@ pipeline:
                       ls -la
                       echo <+pipeline.stages.clone_repo.variables.aws_access_key>
                       echo <+pipeline.stages.clone_repo.variables.aws_secret_key>
-                      access-key= <+pipeline.stages.clone_repo.variables.aws_access_key>
-                      secret-key= <+pipeline.stages.clone_repo.variables.aws_secret_key>
-                      echo $access-key
-                      echo $secret-key
+                      export AWS_ACCESS_KEY_ID=<+pipeline.stages.clone_repo.variables.aws_access_key>
+                      export AWS_SECRET_ACCESS_KEY=<+pipeline.stages.clone_repo.variables.aws_secret_key>
+                      #AWS_REGION=""
+                      #AWS_OUTPUT_FORMAT=""
+                      #access-key= <+pipeline.stages.clone_repo.variables.aws_access_key>
+                      #secret-key= <+pipeline.stages.clone_repo.variables.aws_secret_key>
                       export PYTHONUNBUFFERED=1
                       role_name=<+pipeline.stages.clone_repo.variables.Role>
                       aws_region=<+stage.variables.Region>
