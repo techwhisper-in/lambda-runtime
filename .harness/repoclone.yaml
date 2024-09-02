@@ -53,7 +53,7 @@ pipeline:
                       pwd
                       ls -la
                       echo <+pipeline.properties.ci.codebase.connectorRef>
-                      echo <+pipeline.stages.clone_repo.spec.execution.steps.Run_1.spec.connectorRef>
+                      echo <+pipeline.stages.clone_repo.spec.execution.steps.Run_1.spec.connectorRef.spec.accessKey>
                       export PYTHONUNBUFFERED=1
                       role_name=<+pipeline.stages.clone_repo.variables.Role>
                       aws_region=<+stage.variables.Region>
