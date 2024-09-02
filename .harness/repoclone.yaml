@@ -8,7 +8,7 @@ pipeline:
     ci:
       codebase:
         connectorRef: connect_to_techwhisperin
-        repoName: s3-configuration
+        repoName: lambda-runtime
         build: <+input>
   stages:
     - stage:
