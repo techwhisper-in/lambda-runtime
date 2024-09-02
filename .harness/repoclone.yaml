@@ -17,6 +17,14 @@ pipeline:
         description: ""
         type: CI
         variables:
+          - name: aws_access_key
+            type: Secret
+            required: true
+            value: <+input>
+          - name: aws_secret_key
+            type: Secret
+            required: true
+            value: <+input>
           - name: Role
             type: String
             required: true
@@ -52,8 +60,12 @@ pipeline:
                     command: |-
                       pwd
                       ls -la
-                      echo <+pipeline.properties.ci.codebase.connectorRef>
-                      echo <+pipeline.stages.clone_repo.spec.execution.steps.Run_1.spec.connectorRef.spec.accessKey>
+                      echo <+pipeline.stages.clone_repo.variables.aws_access_key>
+                      echo <+pipeline.stages.clone_repo.variables.aws_secret_key>
+                      access-key= <+pipeline.stages.clone_repo.variables.aws_access_key>
+                      secret-key= <+pipeline.stages.clone_repo.variables.aws_secret_key>
+                      echo $access-key
+                      echo $secret-key
                       export PYTHONUNBUFFERED=1
                       role_name=<+pipeline.stages.clone_repo.variables.Role>
                       aws_region=<+stage.variables.Region>
