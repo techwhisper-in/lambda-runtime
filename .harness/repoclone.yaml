@@ -40,7 +40,7 @@ pipeline:
             type: Docker
             spec: {}
           service:
-            name: AWS-CLI
+            name: aws-cli
             type: AWS
             spec:
               connectorRef: connectawsaccount
