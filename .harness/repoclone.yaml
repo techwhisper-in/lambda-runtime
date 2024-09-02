@@ -26,7 +26,10 @@ pipeline:
                   identifier: Run_1
                   spec:
                     shell: Bash
-                    command: pwd
+                    command: |-
+                      pwd
+                      ls -la
+                      sleep 10
               - step:
                   type: Run
                   name: Run_2
@@ -35,7 +38,7 @@ pipeline:
                     shell: Bash
                     command: |-
                       pwd
-                      ls
+                      ls -la
           caching:
             enabled: false
             paths: []
