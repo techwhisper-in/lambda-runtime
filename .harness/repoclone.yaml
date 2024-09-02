@@ -39,14 +39,13 @@ pipeline:
           runtime:
             type: Docker
             spec: {}
-          execution:
+          service:
+            name: AWS-CLI
+            type: AWS
             spec:
-              service:
-                name: AWS-CLI
-                type: AWS
-                spec:
-                  connectorRef: connectawsaccount
-                  region: ""
+              connectorRef: connectawsaccount
+              region: ""
+          execution:
             steps:
               - step:
                   type: Run
