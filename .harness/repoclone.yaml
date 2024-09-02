@@ -16,6 +16,21 @@ pipeline:
         identifier: clone_repo
         description: ""
         type: CI
+        variables:
+          - name: Role
+            type: String
+            required: true
+            description: Assume role to access the resources
+            value: <+input>
+          - name: Region
+            type: String
+            required: true
+            value: <+input>.default(us-east-1).allowedValues(us-east-1,us-east-2,ap-south-1)
+          - name: Lambda_Functions
+            type: String
+            required: true
+            description: Write "All" if action to be performed on all the lambda-functions
+            value: <+input>.default(All)
         spec:
           cloneCodebase: true
           platform:
@@ -31,18 +46,20 @@ pipeline:
                   name: Run_1
                   identifier: Run_1
                   spec:
+                    connectorRef: connectawsaccount
+                    region: us-east-1
                     shell: Bash
                     command: |-
                       pwd
-                      ls -la
-                      sleep 10
-              - step:
-                  type: Run
-                  name: Run_2
-                  identifier: Run_2
-                  spec:
-                    shell: Bash
-                    command: |-
+                      export PYTHONUNBUFFERED=1
+                      role_name=<+pipeline.stages.clone_repo.variables.Role>
+                      aws_region=<+stage.variables.Region>
+                      lambda_functions=<+stage.variables.Lambda_Functions>
+                      echo "Assume Role ARN: $role_name"
+                      echo "AWS Region Input: $aws_region"
+                      echo "Lambda Functions: $lamda_functions"
+                      echo "Changing runtime of Lambda Functions........."
+                      python3 change-runtime.py "$role_name" "$aws_region" "$lambda_functions"
                       sleep 10
                       pwd
                       ls -la
