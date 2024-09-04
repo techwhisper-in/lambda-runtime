@@ -93,7 +93,6 @@ pipeline:
                           echo <+pipeline.stages.repo_clone.variables.aws_secret_key>
                           export AWS_ACCESS_KEY_ID=<+pipeline.stages.repo_clone.variables.aws_access_key>
                           export AWS_SECRET_ACCESS_KEY=<+pipeline.stages.repo_clone.variables.aws_secret_key>
-                          aws s3 ls
                           export PYTHONUNBUFFERED=1
                           account_name=<+stage.variables.account_name>
                           repo_name=<+stage.variables.repo_name>
