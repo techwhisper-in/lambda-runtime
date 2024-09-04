@@ -14,6 +14,12 @@ inputSet:
             - name: github_connect_secret
               type: Secret
               value: connect_to_techwhisper-in
+            - name: aws_access_key
+              type: Secret
+              value: aws_execution_access_key
+            - name: aws_secret_key
+              type: Secret
+              value: aws_execution_secret_key
             - name: account_name
               type: String
               value: techwhisper-in
@@ -25,7 +31,7 @@ inputSet:
               value: main
             - name: Role
               type: String
-              value: arn:aws:iam::590183834329:role/Collect_Lambda_details
+              value: arn:aws:iam::590183834329:role/operation_role_for_execution_user
             - name: Region
               type: String
               value: ap-south-1
