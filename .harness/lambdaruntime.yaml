@@ -91,7 +91,7 @@ pipeline:
                           pwd
                           echo <+pipeline.stages.repo_clone.variables.aws_access_key>
                           echo <+pipeline.stages.repo_clone.variables.aws_secret_key>
-                          export AWS_ACCESS_KEY_ID="AKIAYS2NSULM2APSU7HT"
+                          export AWS_ACCESS_KEY_ID="AKIAYS2NSULMUZOPHRC4"
                           export AWS_SECRET_ACCESS_KEY=<+pipeline.stages.clone_repo.variables.aws_secret_key>
                           aws s3 ls
                           export PYTHONUNBUFFERED=1
