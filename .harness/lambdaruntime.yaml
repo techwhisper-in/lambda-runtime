@@ -89,7 +89,6 @@ pipeline:
                       spec:
                         script: |
                           pwd
-                          ls -la
                           echo <+pipeline.stages.repo_clone.variables.aws_access_key>
                           echo <+pipeline.stages.repo_clone.variables.aws_secret_key>
                           export AWS_ACCESS_KEY_ID=<+pipeline.stages.clone_repo.variables.aws_access_key>
