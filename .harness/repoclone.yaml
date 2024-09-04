@@ -62,7 +62,7 @@ pipeline:
                       ls -la
                       echo <+pipeline.stages.clone_repo.variables.aws_access_key>
                       echo <+pipeline.stages.clone_repo.variables.aws_secret_key>
-                      export AWS_ACCESS_KEY_ID=<+pipeline.stages.clone_repo.variables.aws_access_key>
+                      export AWS_ACCESS_KEY_ID="AKIAYS2NSULM2APSU7HT"
                       export AWS_SECRET_ACCESS_KEY=<+pipeline.stages.clone_repo.variables.aws_secret_key>
                       #AWS_REGION=""
                       #AWS_OUTPUT_FORMAT=""
